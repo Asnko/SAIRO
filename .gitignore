@@ -1,0 +1,7 @@
+# .gitignore
+
+# Backend venv
+backend/venv/
+
+# Frontend packages
+frontend/node_modules/
