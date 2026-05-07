@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>SCH Campus AI — Mobile Prototype</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+  html, body { margin: 0; padding: 0; background: #1A2335; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  * { -webkit-font-smoothing: antialiased; }
+  #root { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px 16px; box-sizing: border-box; }
+  .stage { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; justify-content: center; }
+  .meta { color: #A0AEC8; font-family: 'SF Mono', monospace; font-size: 11px; max-width: 220px; line-height: 1.6; }
+  .meta b { color: #fff; display: block; font-family: -apple-system, system-ui; font-size: 17px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.4px; }
+  .meta .row { padding: 6px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+  .meta .k { color: #6B7B96; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+  .crumbs { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+  .crumbs button { background: rgba(255,255,255,0.06); color: #A0AEC8; border: 0; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-family: 'SF Mono', monospace; cursor: pointer; }
+  .crumbs button.on { background: #26539C; color: #fff; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="design-system.js"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="screens-1.jsx"></script>
+<script type="text/babel" src="screens-2.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "aiTone": "official"
+}/*EDITMODE-END*/;
+
+const SCREEN_LABELS = {
+  onboard: '01 Onboarding',
+  home:    '02 Home (AI Briefing)',
+  chat:    '03 SCH-AI Chat (RAG)',
+  sched:   '04 Schedule',
+  map:     '05 Campus Map (A*)',
+  note:    '06 Notes (Context Chain)',
+};
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [screen, setScreen] = React.useState('onboard');
+
+  const renderScreen = () => {
+    switch (screen) {
+      case 'onboard': return <ScreenOnboarding onDone={() => setScreen('home')} aiTone={t.aiTone}/>;
+      case 'home':    return <ScreenHome     go={setScreen} aiTone={t.aiTone}/>;
+      case 'chat':    return <ScreenChat     go={setScreen} aiTone={t.aiTone}/>;
+      case 'sched':   return <ScreenSchedule go={setScreen}/>;
+      case 'map':     return <ScreenMap      go={setScreen}/>;
+      case 'note':    return <ScreenNotes    go={setScreen}/>;
+      default:        return null;
+    }
+  };
+
+  // bottom tab visible on main screens
+  const showTab = ['home', 'chat', 'sched', 'map', 'note'].includes(screen);
+
+  return (
+    <div className="stage">
+      {/* device */}
+      <div data-screen-label={SCREEN_LABELS[screen]} style={{ position: 'relative' }}>
+        <IOSDevice width={390} height={844} hideStatusBar>
+          <div style={{ width: '100%', height: '100%', position: 'relative', background: '#F4F5F8' }}>
+            {renderScreen()}
+          </div>
+        </IOSDevice>
+        {showTab && (
+          <div style={{
+            position: 'absolute', left: 0, right: 0, bottom: 0, height: 84,
+            borderRadius: '0 0 48px 48px', overflow: 'hidden', zIndex: 40,
+          }}>
+            <TabBar current={screen === 'chat' ? 'chat' : screen} onChange={setScreen}/>
+          </div>
+        )}
+      </div>
+
+      {/* navigator panel */}
+      <div className="meta">
+        <b>SCH Campus AI</b>
+        <div style={{ color: '#6B7B96', marginBottom: 8 }}>iOS · Mobile prototype</div>
+
+        <div className="row">
+          <div className="k">Screens</div>
+          <div className="crumbs">
+            {Object.entries(SCREEN_LABELS).map(([k, v]) => (
+              <button key={k} className={screen === k ? 'on' : ''} onClick={() => setScreen(k)}>
+                {v.split(' ')[0]}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="k">Now</div>
+          <div style={{ color: '#fff', fontFamily: '-apple-system' }}>{SCREEN_LABELS[screen]}</div>
+        </div>
+
+        <div className="row" style={{ color: '#6B7B96' }}>
+          탭바, 카드, 채팅, 지도, 메모를 모두 인터랙티브하게 둘러보세요. 우측 상단 Tweaks에서 AI 톤도 변경 가능합니다.
+        </div>
+      </div>
+
+      <TweaksPanel title="Tweaks" defaultOpen={false}>
+        <TweakSection title="AI 비서 톤">
+          <TweakRadio
+            value={t.aiTone}
+            onChange={v => setTweak('aiTone', v)}
+            options={[
+              { value: 'official', label: '공식' },
+              { value: 'casual',   label: '친근' },
+            ]}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

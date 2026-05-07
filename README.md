@@ -7,7 +7,7 @@
 _캠퍼스 라이프 초밀착 지능형 에이전트 🤖_
 
 [![Status](https://img.shields.io/badge/status-in--development-FFD700?style=for-the-badge&logo=github)]()
-[![Frontend](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)]()
+[![Frontend](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)]()
 [![Backend](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)]()
 [![Repo](https://img.shields.io/badge/repo-monorepo-6E40C9?style=for-the-badge)]()
 
@@ -52,15 +52,24 @@ _캠퍼스 라이프 초밀착 지능형 에이전트 🤖_
 
 ### 💻 Frontend
 
-<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" /> <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" />
+<img src="https://img.shields.io/badge/react_native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+<img src="https://img.shields.io/badge/expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
 
 ### ⚙️ Backend
 
-<img src="https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" /> <img src="https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff6c5c&labelColor=ff1709" />
+<img src="https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" />
+<img src="https://img.shields.io/badge/DJANGO--REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff6c5c&labelColor=ff1709" />
 
 ### 🤖 AI / ML
 
-<img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" /> <img src="https://img.shields.io/badge/🦜🔗 LangChain-1C3C3C?style=for-the-badge&logoColor=white" /> <img src="https://img.shields.io/badge/Vector DB-4B275F?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" />
+<img src="https://img.shields.io/badge/🦜🔗%20LangChain-1C3C3C?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/Vector%20DB-4B275F?style=for-the-badge&logoColor=white" />
+
+### 🐳 Infrastructure
+
+<img src="https://img.shields.io/badge/docker-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white" />
+<img src="https://img.shields.io/badge/ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" />
 
 <br>
 
@@ -83,11 +92,11 @@ _캠퍼스 라이프 초밀착 지능형 에이전트 🤖_
 
 ```text
 SAIRO/
-├── 📁 frontend/   # 웹 클라이언트 (React + Vite)
-├── 📁 backend/    # Django REST API 서버
-├── 📁 ai/         # AI 모델 · RAG · LSTM 분류기
+├── 📁 app/        # 클라이언트 어플리케이션
+├── 📁 server/     # 백엔드 및 AI 서버
+│   └── 📁 app/    # Django REST API · AI 모델 (RAG · LSTM)
 ├── 📁 data/       # 캠퍼스 지형 가중치 데이터셋
-├── 📁 docs/
+├── 📁 docs/       # 프로젝트 문서
 └── 📄 README.md
 ```
 
@@ -100,9 +109,9 @@ SAIRO/
 git clone https://github.com/Asnko/SAIRO.git
 cd SAIRO
 
-# 2. Backend (TBD)
+# 2. Server (TBD)
 
-# 3. Frontend (TBD)
+# 3. App (TBD)
 ```
 
 <br>

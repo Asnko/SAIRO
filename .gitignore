@@ -1,7 +1,7 @@
 # .gitignore
 
 # Backend venv
-backend/venv/
+server/venv/
 
 # Frontend packages
-frontend/node_modules/
+app/node_modules/
