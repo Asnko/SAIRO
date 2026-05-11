@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "SCH Campus AI",
+    "slug": "sch-campus-ai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "schcampusai",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "kr.ac.sch.campusai",
+      "buildNumber": "1"
+    },
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1A3F7A"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-secure-store"
+    ],
+    "bundler": "metro",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

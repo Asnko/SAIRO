@@ -5,3 +5,27 @@ server/venv/
 
 # Frontend packages
 app/node_modules/
+
+# Environment files (anywhere in the project)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+
+# Secrets & keys
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
