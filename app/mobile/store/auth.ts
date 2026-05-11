@@ -128,7 +128,7 @@ export async function login(username: string, password: string): Promise<LoginRe
     access: string;
     refresh: string;
     user: AuthUser;
-  }>('/api/v1/auth/token/', { username, password });
+  }>('/api/auth/token/', { username, password });
 
   if (!data) {
     return { success: false, error: error ?? '로그인에 실패했습니다.' };
@@ -153,7 +153,7 @@ export async function register(payload: {
   password: string;
 }): Promise<RegisterResult> {
   const { data, error, status } = await api.post<AuthUser>(
-    '/api/v1/auth/register/',
+    '/api/auth/register/',
     payload,
   );
 

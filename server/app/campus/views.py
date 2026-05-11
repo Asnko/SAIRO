@@ -16,8 +16,8 @@ from .serializers import (
 
 class BuildingViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    GET /api/v1/campus/buildings/       — 건물 목록
-    GET /api/v1/campus/buildings/{id}/  — 건물 상세
+    GET /api/campus/buildings/       — 건물 목록
+    GET /api/campus/buildings/{id}/  — 건물 상세
     """
     queryset = Building.objects.all()
     serializer_class = BuildingSerializer
@@ -26,7 +26,7 @@ class BuildingViewSet(viewsets.ReadOnlyModelViewSet):
 
 class RouteView(APIView):
     """
-    POST /api/v1/campus/route/
+    POST /api/campus/route/
     Body: { from_building, to_building, profile }
     Returns: 경로 탐색 결과 (A* 알고리즘 — 추후 구현)
     """

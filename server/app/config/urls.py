@@ -14,7 +14,7 @@ from drf_spectacular.views import (
 
 
 def ping(request):
-    """GET /api/v1/ping/ — 연결 테스트"""
+    """GET /api/ping/ — 연결 테스트"""
     return JsonResponse({
         'status': 'ok',
         'message': '🎓 SCH Campus AI 서버에 연결됐습니다!',
@@ -23,22 +23,22 @@ def ping(request):
     })
 
 
-# API v1 prefix
-API_V1 = 'api/v1/'
+# API prefix
+API_PREFIX = 'api/'
 
 urlpatterns = [
     # ── Health check (인증 불필요) ──────────────────────────────────────────
-    path(API_V1 + 'ping/', ping, name='ping'),
+    path(API_PREFIX + 'ping/', ping, name='ping'),
 
     # ── Admin ──────────────────────────────────────────────────────────────
     path('admin/', admin.site.urls),
 
-    # ── API v1 ─────────────────────────────────────────────────────────────
-    path(API_V1 + 'auth/',    include('app.users.urls',   namespace='auth')),
-    path(API_V1 + 'courses/', include('app.courses.urls', namespace='courses')),
-    path(API_V1 + 'notices/', include('app.notices.urls', namespace='notices')),
-    path(API_V1 + 'notes/',   include('app.notes.urls',   namespace='notes')),
-    path(API_V1 + 'campus/',  include('app.campus.urls',  namespace='campus')),
+    # ── API ─────────────────────────────────────────────────────────────
+    path(API_PREFIX + 'auth/',    include('app.users.urls',   namespace='auth')),
+    path(API_PREFIX + 'courses/', include('app.courses.urls', namespace='courses')),
+    path(API_PREFIX + 'notices/', include('app.notices.urls', namespace='notices')),
+    path(API_PREFIX + 'notes/',   include('app.notes.urls',   namespace='notes')),
+    path(API_PREFIX + 'campus/',  include('app.campus.urls',  namespace='campus')),
 
     # ── OpenAPI Schema ─────────────────────────────────────────────────────
     path('api/schema/',        SpectacularAPIView.as_view(),        name='schema'),

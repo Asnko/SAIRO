@@ -81,7 +81,7 @@ export interface PingResponse {
   version: string;
 }
 
-export const ping = () => api.get<PingResponse>('/api/v1/ping/');
+export const ping = () => api.get<PingResponse>('/api/ping/');
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -105,7 +105,7 @@ export interface AuthTokenResponse {
 
 export const authApi = {
   login: (studentId: string, password: string) =>
-    api.post<AuthTokenResponse>('/api/v1/auth/token/', {
+    api.post<AuthTokenResponse>('/api/auth/token/', {
       student_id: studentId,
       password,
     }),
@@ -116,7 +116,7 @@ export const authApi = {
     department: string;
     email: string;
     password: string;
-  }) => api.post('/api/v1/auth/register/', payload),
+  }) => api.post('/api/auth/register/', payload),
 
-  me: (token: string) => api.get('/api/v1/auth/me/', token),
+  me: (token: string) => api.get('/api/auth/me/', token),
 };

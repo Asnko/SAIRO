@@ -16,12 +16,12 @@ from .email import send_verification_email
 
 
 class SCHTokenObtainPairView(TokenObtainPairView):
-    """POST /api/v1/auth/token/ — 로그인 (아이디 + 비밀번호 → JWT)"""
+    """POST /api/auth/token/ — 로그인 (아이디 + 비밀번호 → JWT)"""
     serializer_class = SCHTokenObtainPairSerializer
 
 
 class RegisterView(APIView):
-    """POST /api/v1/auth/register/ — 회원가입"""
+    """POST /api/auth/register/ — 회원가입"""
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
@@ -32,7 +32,7 @@ class RegisterView(APIView):
 
 
 class MeView(generics.RetrieveUpdateAPIView):
-    """GET/PATCH /api/v1/auth/me/ — 내 프로필 조회·수정"""
+    """GET/PATCH /api/auth/me/ — 내 프로필 조회·수정"""
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -41,7 +41,7 @@ class MeView(generics.RetrieveUpdateAPIView):
 
 
 class DepartmentListView(APIView):
-    """GET /api/v1/auth/departments/ — 전공 목록"""
+    """GET /api/auth/departments/ — 전공 목록"""
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):
@@ -50,7 +50,7 @@ class DepartmentListView(APIView):
 
 
 class SendVerificationCodeView(APIView):
-    """POST /api/v1/auth/email/send-code/"""
+    """POST /api/auth/email/send-code/"""
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
@@ -74,7 +74,7 @@ class SendVerificationCodeView(APIView):
 
 
 class VerifyCodeView(APIView):
-    """POST /api/v1/auth/email/verify-code/"""
+    """POST /api/auth/email/verify-code/"""
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):

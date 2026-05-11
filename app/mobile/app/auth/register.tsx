@@ -125,7 +125,7 @@ function VerifyStep({
 
   const sendCode = async () => {
     setSending(true); setError('');
-    const { error: err } = await api.post('/api/v1/auth/email/send-code/', { email });
+    const { error: err } = await api.post('/api/auth/email/send-code/', { email });
     setSending(false);
     if (err) { setError(err); return; }
     setCountdown(60);
@@ -134,7 +134,7 @@ function VerifyStep({
   const verify = async () => {
     if (code.length !== 6) { setError('6자리 인증번호를 입력해주세요.'); return; }
     setLoading(true); setError('');
-    const { error: err } = await api.post('/api/v1/auth/email/verify-code/', { email, code });
+    const { error: err } = await api.post('/api/auth/email/verify-code/', { email, code });
     setLoading(false);
     if (err) { setError(err); return; }
     onVerified();
@@ -238,7 +238,7 @@ export default function RegisterScreen() {
   const [departments, setDepts]   = useState<Department[]>([]);
 
   useEffect(() => {
-    api.get<Department[]>('/api/v1/auth/departments/').then(({ data }) => {
+    api.get<Department[]>('/api/auth/departments/').then(({ data }) => {
       if (data) setDepts(data);
     });
   }, []);

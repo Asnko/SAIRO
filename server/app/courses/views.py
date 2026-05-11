@@ -8,8 +8,8 @@ from .serializers import CourseSerializer, EnrollmentSerializer
 
 class CourseViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    GET /api/v1/courses/          — 전체 강의 목록
-    GET /api/v1/courses/{id}/     — 강의 상세
+    GET /api/courses/          — 전체 강의 목록
+    GET /api/courses/{id}/     — 강의 상세
     ?semester=2026-1&day=2        — 필터링
     ?search=인공지능               — 검색
     """
@@ -23,9 +23,9 @@ class CourseViewSet(viewsets.ReadOnlyModelViewSet):
 
 class EnrollmentViewSet(viewsets.ModelViewSet):
     """
-    GET    /api/v1/courses/enrollments/       — 내 수강 목록
-    POST   /api/v1/courses/enrollments/       — 수강신청
-    DELETE /api/v1/courses/enrollments/{id}/  — 수강취소
+    GET    /api/courses/enrollments/       — 내 수강 목록
+    POST   /api/courses/enrollments/       — 수강신청
+    DELETE /api/courses/enrollments/{id}/  — 수강취소
     """
     serializer_class = EnrollmentSerializer
     permission_classes = [permissions.IsAuthenticated]

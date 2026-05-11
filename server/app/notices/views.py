@@ -8,8 +8,8 @@ from .serializers import NoticeSerializer
 
 class NoticeViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    GET /api/v1/notices/       — 공지 목록
-    GET /api/v1/notices/{id}/  — 공지 상세
+    GET /api/notices/       — 공지 목록
+    GET /api/notices/{id}/  — 공지 상세
     ?tag=scholarship           — 태그 필터
     ?search=장학금              — 검색
     """
