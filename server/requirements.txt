@@ -17,6 +17,7 @@ django-environ==0.11.2
 # Pillow==11.1.0             # image fields — install separately if needed
 django-filter==24.3          # queryset filtering
 drf-spectacular==0.28.0      # OpenAPI 3 schema / Swagger UI
+requests==2.31.0             # HTTP requests — 학사정보시스템 sync
 
 # ── Dev / Test ────────────────────────────────────────────────────────────────
 pytest==8.3.4

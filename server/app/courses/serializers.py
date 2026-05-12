@@ -1,18 +1,35 @@
 from rest_framework import serializers
-from .models import Course, Enrollment
+from .models import Course, CourseMeeting, Enrollment
+
+
+class CourseMeetingSerializer(serializers.ModelSerializer):
+    day_display = serializers.CharField(source='get_day_display', read_only=True)
+
+    class Meta:
+        model = CourseMeeting
+        fields = ['id', 'day', 'day_display', 'start_period', 'end_period']
 
 
 class CourseSerializer(serializers.ModelSerializer):
     course_type_display = serializers.CharField(source='get_course_type_display', read_only=True)
-    day_display         = serializers.CharField(source='get_day_display', read_only=True)
+    meetings = CourseMeetingSerializer(many=True, read_only=True)
 
     class Meta:
         model = Course
         fields = [
-            'id', 'name', 'code', 'professor', 'room',
-            'department', 'course_type', 'course_type_display',
-            'credits', 'day', 'day_display', 'start_hour',
-            'duration', 'tone', 'semester',
+            'id', 'year', 'smt', 'code', 'sbjt_id', 'cls_no',
+            'name', 'professor', 'professor_id', 'room',
+            'department', 'open_org', 'open_shyr',
+            'course_type', 'course_type_display',
+            'credits', 'meeting_raw', 'meetings',
+            'tone', 'semester', 'syllabus_url',
+        ]
+        read_only_fields = [
+            'year', 'smt', 'code', 'sbjt_id', 'cls_no',
+            'name', 'professor', 'professor_id', 'room',
+            'department', 'open_org', 'open_shyr',
+            'course_type', 'credits', 'meeting_raw', 'meetings',
+            'semester', 'syllabus_url',
         ]
 
 
