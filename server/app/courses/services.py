@@ -98,6 +98,11 @@ def _parse_course_xml(xml_str: str) -> list[dict]:
         if cors_st_div_nm == "교직":
             continue
 
+        # 교수명 아예 없거나 미지정강사인 경우 제외
+        professor = (cols.get("EMP_NM") or "").strip()
+        if not professor or professor == "미지정강사":
+            continue
+
         type_map = {"전공필수": "major_req", "전공선택": "major_elec", "전공": "major_undiv", "교양": "general"}
         course_type = type_map.get(cors_st_div_nm, "general")
 
